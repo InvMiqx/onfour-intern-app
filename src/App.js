@@ -1,8 +1,15 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import Grid from "./components/grid";
+import "./App.css";
 
-function App() {
+const App = () => {
+  // ADD JAVASCRIPT CODE HERE
+
+  //
+  //
+
+  // HTML RENDERING DONE IN THE RETURN STATEMENT
   return (
     <div className="App">
       <header className="App-header">
@@ -21,6 +28,6 @@ function App() {
       </header>
     </div>
   );
-}
+};
 
 export default App;
