@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import logo from "./logo.svg";
 import Grid from "./components/grid";
 import "./App.css";
@@ -6,8 +6,10 @@ import "./App.css";
 const App = () => {
   // ADD JAVASCRIPT CODE HERE
 
-  //
-  //
+  // useEffect hook that runs when App is "mounted"
+  useEffect(() => {
+    // Get JSON data here
+  }, []);
 
   // HTML RENDERING DONE IN THE RETURN STATEMENT
   return (
