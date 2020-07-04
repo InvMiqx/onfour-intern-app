@@ -1,35 +1,39 @@
-import React, { useEffect } from "react";
-import logo from "./logo.svg";
-import Grid from "./components/grid";
+import React from "react";
 import "./App.css";
+import data from "./data.json";
+import ConcertCard from "./components/concertCard";
 
-const App = () => {
-  // ADD JAVASCRIPT CODE HERE
+export class App extends React.Component{
+  compareToByDate(a, b){
+    //tests if a>b (date a is after date b)
+    //assumes parameters are datetime objs
+    return a.valueOf() - b.valueOf() > 0;
+  }
 
-  // useEffect hook that runs when App is "mounted"
-  useEffect(() => {
-    // Get JSON data here
-  }, []);
+  createConcertCard(element){
+    return <ConcertCard
+      key={element.image} //subject to change as see fit
+      imageurl={element.image}
+      artist_name={element.artist_name}
+      concert_name={element.concert_name}
+      datetime = {new Date(element.date + " " + element.time)}
+      genre={element.genre}
+    />;
+  }
 
-  // HTML RENDERING DONE IN THE RETURN STATEMENT
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-};
+  createContent(data){
+    let concertCardList = data.map(this.createConcertCard);
+    concertCardList.sort((a, b) => (this.compareToByDate(a.props.datetime, b.props.datetime)) ? 1 : -1);
+    return concertCardList;
+  }
+
+  render(){
+    return (
+      <div className="flex-container">
+        {this.createContent(data)}
+      </div>
+    )
+  }
+}
 
 export default App;
